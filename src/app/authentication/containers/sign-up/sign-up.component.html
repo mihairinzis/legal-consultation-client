@@ -56,16 +56,12 @@
         type="email"
         required
       />
-
       <mat-hint align="end">{{ email.value.length }} / 40</mat-hint>
-
-      <mat-error
-        *ngIf="signUpForm.controls.email.hasError('EMAIL_NOT_EMPTY') || signUpForm.controls.email.hasError('required')">
-        Email-ul este obligatoriu.
-      </mat-error>
-      <mat-error *ngIf="signUpForm.controls.email.hasError('EMAIL_MAX_LENGTH_40')">
-        Email-ul nu poate avea mai mult de 40 caractere.
-      </mat-error>
+      <ng-container *ngIf="signUpForm.controls.email.errors">
+        <mat-error *ngFor="let error of signUpForm.controls.email.errors | keyvalue">
+          {{error.key | translate}}
+        </mat-error>
+      </ng-container>
     </mat-form-field>
 
     <mat-form-field>

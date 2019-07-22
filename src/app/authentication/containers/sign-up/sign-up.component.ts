@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import {UserRequest} from '@app/core/models';
 import {AuthenticationApiService} from '@app/core/http';
+import {Tools} from '@app/shared/utils/tools';
 
 @Component({
   selector: 'app-sign-up',
@@ -16,11 +17,12 @@ export class SignUpComponent implements OnInit {
   public signUpForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     username: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
 
   constructor(private router: Router,
+              private route: ActivatedRoute,
               private authenticationApiService: AuthenticationApiService
   ) { }
 
@@ -29,6 +31,7 @@ export class SignUpComponent implements OnInit {
       this.aUser = new UserRequest();
       this.aUser.fromForm(aValue);
     });
+    this.signUpForm.controls.email.setValue(Tools.safeGet(() => this.route.snapshot.params.email));
   }
 
   onSubmit() {
@@ -37,8 +40,6 @@ export class SignUpComponent implements OnInit {
       NAME_MAX_LENGTH_40: 'name',
       USERNAME_NOT_EMPTY: 'username',
       USERNAME_MAX_LENGTH_15: 'username',
-      EMAIL_NOT_EMPTY: 'email',
-      EMAIL_MAX_LENGTH_40: 'email',
       PASSWORD_NOT_EMPTY: 'password',
       PASSWORD_MAX_LENGTH_100: 'password',
     };

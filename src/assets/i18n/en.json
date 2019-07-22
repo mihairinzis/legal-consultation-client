@@ -1,5 +1,6 @@
 {
   "required": "Mandatory field.",
+  "email": "Invalid email.",
   "validation.Resource.not.found": "Resource was not found.",
 
   "register": {

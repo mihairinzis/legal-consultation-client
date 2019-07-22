@@ -14,6 +14,10 @@ const routes: Routes = [
   },
   {
     path: 'sign-up',
+    redirectTo: 'sign-up/'
+  },
+  {
+    path: 'sign-up/:email',
     component: fromContainers.SignUpComponent,
   },
 ];
