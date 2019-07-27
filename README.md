@@ -51,6 +51,8 @@ npm
 - npm install
 - npm start
 
+### [With docker-compose](etc/docker/README.md)
+
 Your server will start on `localhost:4200`
 
 ## Feedback

@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  legal-client-prod:
+    container_name: legal-client-prod
+    build:
+      context: .
+      dockerfile: Dockerfile-prod
+    ports:
+      - '80:80'
