@@ -1,1 +1,1 @@
-export const effects: any[] = []
+export const effects: any[] = [];
