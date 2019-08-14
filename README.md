@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/code4romania/legal-consultation-client.svg?branch=develop)](https://travis-ci.com/code4romania/legal-consultation-client)
+
 # Legal Consultation App
 
 [![GitHub contributors](https://img.shields.io/github/contributors/code4romania/legal-consultation-client.svg?style=for-the-badge)](https://github.com/code4romania/legal-consultation-client/graphs/contributors) [![GitHub last commit](https://img.shields.io/github/last-commit/code4romania/legal-consultation-client.svg?style=for-the-badge)](https://github.com/code4romania/legal-consultation-client/commits/master) [![License: MPL 2.0](https://img.shields.io/badge/license-MPL%202.0-brightgreen.svg?style=for-the-badge)](https://opensource.org/licenses/MPL-2.0)
@@ -62,7 +64,7 @@ Your server will start on `localhost:4200`
 * File a bug in GitHub Issues.
 * Email us with other feedback contact@code4.ro
 
-## License 
+## License
 
 This project is licensed under the MPL 2.0 License - see the [LICENSE](LICENSE) file for details
 

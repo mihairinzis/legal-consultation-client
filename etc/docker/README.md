@@ -3,15 +3,16 @@
 * install [Docker](https://docs.docker.com/install/)
 * install `docker-compose`
   * with [pip](https://packaging.python.org/tutorials/installing-packages/): `pip install docker-compose`
-* make sure you execute `docker-compose` from `etc/docker`
-
 # Docker-compose scenarios
-
-* start an nginx with the client using the `production`compose:
+* start an nginx with the client:
+``` shell
+docker-compose -f docker-compose-dev.yml up --build
+```
+* clone and start an nginx with the client:
 ``` shell
 docker-compose -f docker-compose-prod.yml up --build
 ```
-* run all tests within a headless chrome with the `test` compose:
+* clone run all tests within a headless chrome:
 ``` shell
 docker-compose -f docker-compose-test.yml up --build
 ```
