@@ -1,8 +1,8 @@
 version: '3.7'
 
 services:
-  legal-client:
-    container_name: legal-consultation-client
+  expert-client:
+    container_name: expert-consultation-client
     build:
       context: ../../
       dockerfile: etc/docker/Dockerfile-dev

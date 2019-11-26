@@ -1,0 +1,40 @@
+name: Build
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Cache the dependencies
+      uses: actions/cache@v1
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node-
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Lint
+      run: npm run lint
+
+    - name: Build
+      run: npm run build
+
+    - name: Build the Docker image
+      if: github.ref == 'refs/heads/develop'
+      run: |
+        docker build . \
+        --file etc/docker/Dockerfile-dev \
+        --tag ${{ secrets.ORGANIZATION }}/${{ secrets.REPO }}:latest
+
+    - name: Login to docker registry
+      if: github.ref == 'refs/heads/develop'
+      run: docker login -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }}
+
+    - name: Push to docker registry
+      if: github.ref == 'refs/heads/develop'
+      run: docker push ${{ secrets.ORGANIZATION }}/${{ secrets.REPO }}:latest

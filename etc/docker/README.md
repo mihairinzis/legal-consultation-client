@@ -12,7 +12,7 @@ docker-compose -f docker-compose-dev.yml up --build
 ``` shell
 docker-compose -f docker-compose-prod.yml up --build
 ```
-* clone run all tests within a headless chrome:
+* run the backend server dependencies
 ``` shell
-docker-compose -f docker-compose-test.yml up --build
+docker-compose -f docker-compose-backend.yml up
 ```

@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+  mysql:
+    container_name: mysql
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'legalconsultation'
+      MYSQL_ROOT_PASSWORD: 'root'
+    expose:
+      - "3306"
+    volumes:
+      - mysql-vol:/var/lib/mysql
+  mailhog:
+    container_name: mailhog
+    image: mailhog/mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+  expert-consultation-api:
+    container_name: expert-consultation-api
+    image: code4romania/expert-consultation-api
+    environment:
+      - MYSQL_DB_URL=mysql
+      - MYSQL_DB_USERNAME=root
+      - MYSQL_DB_PASSWORD=root
+    ports:
+      - '8080:8080'
+    depends_on:
+      - mysql
+volumes:
+  mysql-vol:
