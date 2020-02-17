@@ -25,6 +25,7 @@ services:
       - MYSQL_DB_URL=mysql
       - MYSQL_DB_USERNAME=root
       - MYSQL_DB_PASSWORD=root
+      - SPRING_PROFILE=dev
     ports:
       - '8080:8080'
     depends_on:
