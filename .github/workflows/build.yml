@@ -21,20 +21,32 @@ jobs:
       - name: Lint
         run: npm run lint
 
-      - name: Build
-        run: npm run build
+      - name: Build staging
+        run: npm run build-staging
 
-      - name: Build the Docker image
+      - name: Deploy to S3 staging
         if: github.ref == 'refs/heads/develop'
-        run: |
-          docker build . \
-          --file etc/docker/Dockerfile-dev \
-          --tag ${{ secrets.ORGANIZATION }}/${{ secrets.REPO }}:latest
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --acl public-read --follow-symlinks --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET_TEST }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          SOURCE_DIR: 'dist/expert-consultation-client'
 
-      - name: Login to docker registry
-        if: github.ref == 'refs/heads/develop'
-        run: docker login -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }}
+      # - name: Build the Docker image
+      #   if: github.ref == 'refs/heads/develop'
+      #   run: |
+      #     docker build . \
+      #     --file etc/docker/Dockerfile-dev \
+      #     --tag ${{ secrets.ORGANIZATION }}/${{ secrets.REPO }}:latest
 
-      - name: Push to docker registry
-        if: github.ref == 'refs/heads/develop'
-        run: docker push ${{ secrets.ORGANIZATION }}/${{ secrets.REPO }}:latest
+      # - name: Login to docker registry
+      #   if: github.ref == 'refs/heads/develop'
+      #   run: docker login -u ${{ secrets.USERNAME }} -p ${{ secrets.PASSWORD }}
+
+      # - name: Push to docker registry
+      #   if: github.ref == 'refs/heads/develop'
+      #   run: docker push ${{ secrets.ORGANIZATION }}/${{ secrets.REPO }}:latest
