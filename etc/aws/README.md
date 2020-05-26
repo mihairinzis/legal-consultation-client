@@ -25,7 +25,7 @@ aws s3 website s3://${AWS_BUCKET} \
 ## Build and upload the files
 
 ``` shell
-npm run build-staging
+npm run build:staging
 aws s3 sync \
   --acl public-read \
   --sse \
