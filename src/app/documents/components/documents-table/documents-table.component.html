@@ -49,8 +49,8 @@
     <mat-paginator #paginator
                    [hidePageSize]="true"
                    [length]="pageData.totalElements"
-                   [pageIndex]="pageData.number"
-                   [pageSize]="pageData.size"
+                   [pageIndex]="pageData.pageable.pageNumber"
+                   [pageSize]="pageData.pageable.pageSize"
                    [showFirstLastButtons]="true"></mat-paginator>
   </div>
 </div>

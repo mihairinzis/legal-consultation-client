@@ -41,7 +41,7 @@ export class DocumentFormComponent implements OnInit, OnChanges {
   public onSave() {
     const documentMetadata = new DocumentMetadata();
     documentMetadata.id = this.document.id;
-    documentMetadata.fromFormData(this.documentForm.value, this.filePath);
+    documentMetadata.fromFormData(this.documentForm.value);
     this.save.emit(documentMetadata);
   }
 

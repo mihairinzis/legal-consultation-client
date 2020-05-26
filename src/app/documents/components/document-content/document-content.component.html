@@ -10,9 +10,12 @@
           </b>
           <p>{{documentNode.content}}</p>
         </div>
-        <app-document-content [documentNodes]="documentNode.children"></app-document-content>
+        <app-document-content [documentNodes]="documentNode.children"
+                              [addCommentModeForNode]="addCommentModeForNode"
+                              (toggleCommentAdding)="clickedAddComment($event)">
+        </app-document-content>
       </div>
-      <div *ngSwitchCase="documentNodeTypeEnum.SECTION">
+      <div *ngSwitchCase=" documentNodeTypeEnum.SECTION">
         <div [id]="documentNode.id">
           <b>
             {{'document.view.section.type.section' | translate |uppercase }}
@@ -20,17 +23,30 @@
           </b>
           <p>{{documentNode.content}}</p>
         </div>
-        <app-document-content [documentNodes]="documentNode.children"></app-document-content>
+        <app-document-content [documentNodes]="documentNode.children"
+                              [addCommentModeForNode]="addCommentModeForNode"
+                              (toggleCommentAdding)="clickedAddComment($event)">
+        </app-document-content>
       </div>
-      <div *ngSwitchCase="documentNodeTypeEnum.ARTICLE" class="article">
+      <div *ngSwitchCase=" documentNodeTypeEnum.ARTICLE" class="article"
+           [ngClass]="addCommentModeForNode.get(documentNode.id)?'comments-mode':''">
         <div [id]="documentNode.id">
-          <b>
+          <strong>
             {{'document.view.section.type.article' | translate}}
             {{documentNode.identifier}}
-          </b>
+          </strong>
           <p class="article">{{documentNode.content}}</p>
+          <div class="comment-row">
+            <a class="blue-link">{{documentNode.numberOfComments}} {{'comments.number'|translate}}</a>
+            <a (click)="clickedAddComment(documentNode.id)"
+               class="blue-link">{{'button.add-comment' | translate}}
+            </a>
+          </div>
+          <app-node-comments *ngIf="commentsEnabled(documentNode.id)"
+                             [nodeId]="documentNode.id"></app-node-comments>
         </div>
-        <app-document-content [documentNodes]="documentNode.children"></app-document-content>
+        <app-document-content [documentNodes]="documentNode.children"
+                              [addCommentModeForNode]="addCommentModeForNode"></app-document-content>
       </div>
       <div *ngSwitchCase="documentNodeTypeEnum.PARAGRAPH">
         <p class="paragraph">{{'(' + documentNode.identifier + ')' + documentNode.content}}</p>
@@ -40,7 +56,6 @@
         <p class="alignment">{{documentNode.identifier + ')' + documentNode.content}}</p>
       </div>
     </div>
-
   </div>
 </ng-template>
 

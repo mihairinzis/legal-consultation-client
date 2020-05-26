@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { BaseComponent } from '@app/shared/components/base-component';
 import { DocumentConsolidate, DocumentMetadata, DocumentNode } from '@app/core';
 
@@ -10,12 +10,18 @@ import { DocumentConsolidate, DocumentMetadata, DocumentNode } from '@app/core';
 })
 export class DocumentViewComponent extends BaseComponent implements OnInit {
   @Input() document: DocumentConsolidate;
+  @Input() addCommentModeForNode: Map<string, boolean>;
+  @Output() toggleCommentAdding: EventEmitter<string> = new EventEmitter<string>();
   documentNode: DocumentNode;
   documentMetadata: DocumentMetadata;
 
   ngOnInit(): void {
     this.documentMetadata = this.document.documentMetadata;
     this.documentNode = this.document.documentNode;
+  }
+
+  clickedAddComment(nodeId) {
+    this.toggleCommentAdding.emit(nodeId);
   }
 
 }

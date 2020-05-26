@@ -16,7 +16,7 @@ export const initialState: UserState = {
   loaded: false,
   loading: false,
   shouldReload: true,
-  pageData: {} as IPageData,
+  pageData: {pageable: {}} as IPageData,
   filter: {
     pageNumber: 0,
     sortField: 'lastName',

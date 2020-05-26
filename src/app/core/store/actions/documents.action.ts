@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { IDocumentMetadata, DocumentConsolidate, Page, DocumentMetadata } from '../../models';
+import { DocumentConsolidate, DocumentMetadata, IDocumentMetadata, Page } from '../../models';
 
 export enum DocumentsActionTypes {
   LoadDocuments = '[Documents] Load Documents',
@@ -10,7 +10,7 @@ export enum DocumentsActionTypes {
   SaveDocumentFail = '[Documents] Save Documents Fail',
   LoadDocumentConsolidate = '[Documents] Load Document Consolidate',
   LoadDocumentConsolidateSuccess = '[Documents] Load Document Consolidate Success',
-  LoadDocumentConsolidateFail = '[Documents] Load Document Consolidate Fail'
+  LoadDocumentConsolidateFail = '[Documents] Load Document Consolidate Fail',
 }
 
 export class LoadDocuments implements Action {

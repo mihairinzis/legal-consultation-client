@@ -5,6 +5,7 @@
 
 .article {
   padding-bottom: 15px;
+  width: 60vw;
 }
 
 .chapter {
@@ -14,4 +15,23 @@
   b {
     font-size: 15px;
   }
+}
+
+.comment-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.blue-link {
+  color: blue;
+  text-decoration: underline;
+  font-weight: bold;
+  cursor: pointer;
+  padding-left: 10px;
+}
+
+.comments-mode {
+  background: #eeeeee;
 }

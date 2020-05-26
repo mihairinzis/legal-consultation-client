@@ -15,7 +15,7 @@ export const initialState: DocumentsState = {
   entity: null,
   loaded: false,
   loading: false,
-  pageData: {} as IPageData,
+  pageData: {pageable: {}} as IPageData,
   error: null
 };
 

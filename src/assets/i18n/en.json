@@ -20,7 +20,9 @@
   "button": {
     "save": "Save",
     "cancel": "Cancel",
-    "confirm": "Confirm"
+    "confirm": "Confirm",
+    "add-comment": "Add a comment",
+    "save-comment": "Comment"
   },
   "search": {
     "label": "Search"
@@ -44,6 +46,11 @@
         "initiator": "Initiator"
       }
     }
+  },
+  "comments": {
+    "placeholder": "Your comment here...",
+    "all": "All comments",
+    "number": "comments"
   },
   "users": {
     "table": {

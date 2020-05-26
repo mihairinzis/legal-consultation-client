@@ -20,7 +20,9 @@
   "button": {
     "save": "Salvează",
     "cancel": "Anulează",
-    "confirm": "Confirmă"
+    "confirm": "Confirmă",
+    "add-comment": "Adaugă un comentariu",
+    "save-comment": "Comentează"
   },
   "search": {
     "label": "Caută"
@@ -44,6 +46,11 @@
         "initiator": "Inițiator"
       }
     }
+  },
+  "comments": {
+    "placeholder": "Scrie comentariul tău aici...",
+    "all": "Toate comentariile",
+    "number": "comentarii"
   },
   "users": {
     "table": {

@@ -1,46 +1,32 @@
+import { IPageable, Pageable } from './pageable.model';
+
 export interface IPageData {
-  first: boolean;
-  last: boolean;
-  number: number;
-  numberOfElements: number;
-  size: number;
-  totalElements: number;
   totalPages: number;
+  totalElements: number;
+  pageable: IPageable;
 }
 
 export class PageData {
-  first: boolean;
-  last: boolean;
-  number: number;
-  numberOfElements: number;
-  size: number;
-  totalElements: number;
   totalPages: number;
+  totalElements: number;
+  pageable: Pageable;
 
   fromPage(otherPage: Page<any>) {
     this.fromJson(otherPage as IPageData);
   }
 
   fromJson(json: IPageData) {
-    this.first = json.first;
-    this.last = json.last;
-    this.number = json.number;
-    this.numberOfElements = json.numberOfElements;
-    this.size = json.size;
     this.totalElements = json.totalElements;
     this.totalPages = json.totalPages;
+    this.pageable = new Pageable(json.pageable);
   }
 
   toJson(): IPageData {
     return {
-      first: this.first,
-      last: this.last,
-      number: this.number,
-      numberOfElements: this.numberOfElements,
-      size: this.size,
-      totalElements: this.totalElements,
       totalPages: this.totalPages,
-    } as PageData;
+      totalElements: this.totalElements,
+      pageable: this.pageable.toJson(),
+    } as IPageData;
   }
 }
 

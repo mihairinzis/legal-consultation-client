@@ -1,2 +1,4 @@
-<app-document-view [document]="document$ | async">
+<app-document-view [document]="document$ | async"
+                   [addCommentModeForNode]="addCommentModeForNode"
+                   (toggleCommentAdding)="addComment($event)">
 </app-document-view>
